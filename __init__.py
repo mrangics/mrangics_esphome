@@ -3,7 +3,8 @@ import esphome.config_validation as cv
 from esphome.components import i2c
 from esphome.const import CONF_ID
 
-DEPENDENCIES = ['i2c']
+# FIX: We explicitly depend on 'output' so float_output.h is found
+DEPENDENCIES = ['i2c', 'output']
 MULTI_CONF = True
 
 pca9635_ns = cg.esphome_ns.namespace('pca9635')
@@ -11,7 +12,7 @@ PCA9635Component = pca9635_ns.class_('PCA9635Component', cg.Component, i2c.I2CDe
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(PCA9635Component),
-}).extend(cv.COMPONENT_SCHEMA).extend(i2c.i2c_device_schema(0x15)) # 0x15 is a common default, but varies by hardware
+}).extend(cv.COMPONENT_SCHEMA).extend(i2c.i2c_device_schema(0x15))
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
