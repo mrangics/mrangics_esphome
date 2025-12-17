@@ -1,7 +1,7 @@
 #pragma once
 
 #include "esphome/core/component.h"
-#include "esphome/components/output/float_output.h"
+#include "esphome/components/output/float_output.h" // This requires DEPENDENCIES=['output'] in __init__.py
 #include "esphome/components/i2c/i2c.h"
 
 namespace esphome {
@@ -11,12 +11,9 @@ class PCA9635Component : public Component, public i2c::I2CDevice {
  public:
   void setup() override;
   void dump_config() override;
-  
-  // Method called by the child output class to write data
   void set_channel_value(uint8_t channel, float state);
 
  protected:
-  // Helper to configure the chip registers
   bool write_register(uint8_t reg, uint8_t value);
 };
 
