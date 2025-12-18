@@ -20,7 +20,7 @@ Configuration variables:
 
 * **i2c_id** (*Optional*, [ID](https://esphome.io/guides/configuration-types/)): The id of the I²C bus to use.
 
-##PCA9635 Output
+## PCA9635 Output
 The pca9635 output platform allows you to use a single channel of the driver as a Float Output.
 
 ## Individual outputs
